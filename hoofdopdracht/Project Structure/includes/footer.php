@@ -1,4 +1,4 @@
-<footer>
+<footer id="funFooter">
 
 <p>wat wil je hier</p>
     &copy; <?php echo date("Y")  ;?> 
@@ -7,6 +7,16 @@
 
 <p id="dbTime">Database geladen om: --:--</p>
 
-<script src="/Project Structure/js/app.js"></script>
+<script src="/hoofdopdracht/Project Structure/js/app.js"></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
