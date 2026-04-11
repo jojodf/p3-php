@@ -1,4 +1,5 @@
 <?php
+session_start(); // 👈 مهم جداً
 include "../includes/db.php";
 
 $errors = [];
@@ -22,20 +23,29 @@ if ($categorie === "") {
     $errors[] = "Categorie mag maximaal 50 tekens bevatten";
 }
 
-// ==== إذا في أخطاء، عرض الفورم مباشرة مع الأخطاء ====
+// ==== إذا في أخطاء ====
 if (!empty($errors)) {
-    include "toevoegen.php"; // الفورم نفسه يعرض الأخطاء
+    $_SESSION['error'] = implode("<br>", $errors); // 👈 تخزين الأخطاء في session
+    header("Location: home.php");
     exit;
 }
 
-// ==== إدراج البيانات في قاعدة البيانات ====
-$sql = "INSERT INTO items (titel, categorie) VALUES (:titel, :categorie)";
-$stmt = $conn->prepare($sql);
-$stmt->execute([
-    ':titel' => $titel,
-    ':categorie' => $categorie
-]);
+// ==== إدراج البيانات ====
+try {
+    $sql = "INSERT INTO items (titel, categorie) VALUES (:titel, :categorie)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        ':titel' => $titel,
+        ':categorie' => $categorie
+    ]);
 
+    $_SESSION['success'] = "Item toegevoegd!"; // 👈 رسالة نجاح
+
+} catch (Exception $e) {
+    $_SESSION['error'] = "Opslaan mislukt!";
+}
+
+// ==== الرجوع للصفحة الرئيسية ====
 header("Location: home.php");
 exit;
 ?>
