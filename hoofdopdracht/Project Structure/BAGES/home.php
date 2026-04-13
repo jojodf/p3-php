@@ -6,8 +6,9 @@ include "../includes/nav.php";
 include "../includes/db.php";
 ?>
 
-
+<link rel="stylesheet" href="../BAGES/stel.css">
 <h1>Overzicht</h1>
+
 <?php if (isset($_SESSION['success'])): ?>
     <div class="alert success">
         <?= $_SESSION['success']; ?>

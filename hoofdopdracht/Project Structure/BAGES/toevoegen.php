@@ -4,7 +4,7 @@ include "../includes/nav.php";
 
 
 ?>
-
+<link rel="stylesheet" href="../BAGES/stel.css">
 <h1>Nieuw item toevoegen</h1>
 
 <?php if (!empty($errors)): ?>
