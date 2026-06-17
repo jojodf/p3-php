@@ -1,5 +1,0 @@
-CREATE TABLE items (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titel VARCHAR(255) NOT NULL,
-    categorie VARCHAR(255)
-);
