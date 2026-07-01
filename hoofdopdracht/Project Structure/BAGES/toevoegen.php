@@ -1,8 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
+
 include "../includes/header.php";
 include "../includes/nav.php";
-
-
 ?>
 <link rel="stylesheet" href="../BAGES/stel.css">
 <h1>Nieuw item toevoegen</h1>

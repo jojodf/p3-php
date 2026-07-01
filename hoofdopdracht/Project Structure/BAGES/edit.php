@@ -1,5 +1,11 @@
 <?php
+session_start();
 include "../includes/db.php";
+
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
 
 /* حذف */
 if (isset($_GET['delete'])) {
@@ -16,7 +22,7 @@ if (isset($_GET['delete'])) {
 
 /* تعديل */
 if (isset($_POST['submit'])) {
-    
+
     $id = $_POST['id'];
     $titel = $_POST['titel'];
     $categorie = $_POST['categorie'];
@@ -53,5 +59,6 @@ $item = $stmt->fetch();
 
     <br><br>
 
-<button type="submit" name="submit">Opslaan</button>
+    <button type="submit" name="submit">Opslaan</button>
+
 </form>

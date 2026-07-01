@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../includes/db.php";
 
 $message = "";
@@ -15,7 +16,14 @@ if (isset($_POST['submit'])) {
 
     if ($user) {
         if (password_verify($password, $user['password'])) {
-            $message = "Succesvol ingelogd";
+
+            // حفظ اسم المستخدم في الـ Session
+            $_SESSION['user'] = $user['username'];
+
+            // الانتقال إلى الصفحة الرئيسية
+            header("Location: home.php ");
+            exit;
+
         } else {
             $message = "Onjuist wachtwoord";
         }

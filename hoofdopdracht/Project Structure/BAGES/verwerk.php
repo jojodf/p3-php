@@ -1,6 +1,11 @@
 <?php
-session_start(); // 👈 مهم جداً
+session_start();
 include "../includes/db.php";
+
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
 
 $errors = [];
 $titel = trim($_POST['titel'] ?? '');
